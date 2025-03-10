@@ -1,11 +1,9 @@
-
-
-
 :root {
     --primary-color: #3498db;
     --primary-dark: #2980b9;
     --secondary-color: #2ecc71;
     --danger-color: #e74c3c;
+    --monitor-color: #9b59b6;
     --text-color: #333;
     --light-bg: #f8f9fa;
     --border-color: #e1e4e8;
@@ -72,7 +70,8 @@ body.dark-mode .input-group select {
     color: var(--dark-text);
 }
 
-body.dark-mode .image-container {
+body.dark-mode .image-container,
+body.dark-mode .health-container {
     background-color: var(--dark-surface);
     border-color: var(--dark-border);
 }
@@ -137,6 +136,13 @@ input:checked + .slider:before {
 .theme-switch-wrapper .icon {
     margin: 0 8px;
     font-size: 14px;
+}
+
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--header-text);
 }
 
 @media (max-width: 768px) {
@@ -443,7 +449,7 @@ tr:nth-child(even) {
     margin-bottom: 1.5rem;
 }
 
-.primary-btn, .secondary-btn, .danger-btn {
+.primary-btn, .secondary-btn, .danger-btn, .monitor-btn {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     border: none;
@@ -480,6 +486,15 @@ tr:nth-child(even) {
     background-color: #c0392b;
 }
 
+.monitor-btn {
+    background-color: var(--monitor-color);
+    color: white;
+}
+
+.monitor-btn:hover {
+    background-color: #8e44ad;
+}
+
 .button-group {
     display: flex;
     gap: 1rem;
@@ -491,7 +506,7 @@ tr:nth-child(even) {
     margin-top: 2rem;
 }
 
-.image-container {
+.image-container, .health-container {
     background-color: white;
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -501,6 +516,13 @@ tr:nth-child(even) {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+.health-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
 }
 
 .image-container img {
@@ -557,7 +579,7 @@ footer {
         width: 100%;
     }
     
-    .image-container {
+    .image-container, .health-container {
         height: 300px;
     }
 }
