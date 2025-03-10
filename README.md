@@ -38,6 +38,7 @@ GET https://api.ansonlai.website/plot?equation=x%5E2%2B5&x_scale=10&y_scale=50
 - Status Code: `400`
 - Body: Error message describing what went wrong during plotting
 
+
 ### 2. Generate Random Equation
 Generate and plot a random equation from a specified category.
 
@@ -74,6 +75,7 @@ GET https://api.ansonlai.website/random?category=trigonometry&x_scale=30&y_scale
 - Status Code: `400`
 - Body: Error message describing what went wrong during parsing
 
+
 ### 3. Generate Random Equation
 Retrieve a random graph from the cache of previously generated plots (of all users).
 
@@ -99,9 +101,9 @@ GET https://api.ansonlai.website/cached
 > [!NOTE]  
 > If the cache is empty, a placeholder image will show 'No cached graphs available'
 
+
 ### 4. Clear Cache
 Clear all cached graphs (includes all users).
-
 
 **Endpoint:** `/cache`
 **Method:** `POST`
@@ -124,6 +126,7 @@ POST https://api.ansonlai.website/cache
   "message": "Cache cleared successfully"
 }
 ```
+
 
 ### 5. Get Cache Information
 Retrieve information about the current cache state.
@@ -169,6 +172,41 @@ GET https://api.ansonlai.website/cache/info
   ]
 }
 ```
+
+
+### 6. System Health Information
+Retrieve current system health metrics including CPU and memory usage.
+
+**Endpoint:** `/systemhealth`
+**Method:** `GET`
+
+**Parameters:**
+`None`
+
+**Example Request:**
+```
+GET https://api.ansonlai.website/systemhealth
+```
+
+**Success Response:**
+- Content-Type: `application/json`
+- Status Code : `200`
+- Body: 
+```
+{
+  "cpu_usage_percent": 1.0,
+  "current_timestamp": 1741618728.4574647,
+  "previous_health_check_timestamp": 1741618551.2184849,
+  "ram_usage": {
+    "percent": 61.5,
+    "total_bytes": 1017094144,
+    "total_readable": "969.98 MB",
+    "used_bytes": 482713600,
+    "used_readable": "460.35 MB"
+  }
+}
+```
+
 
 ## Error Codes
 GraphAPI uses standard HTTP status codes:
