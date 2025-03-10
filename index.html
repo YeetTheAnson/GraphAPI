@@ -16,6 +16,7 @@
               <li><a href="#endpoints">Endpoints</a></li>
               <li><a href="#examples">Examples</a></li>
               <li><a href="#latex-support">LaTeX Support</a></li>
+              <li><a href="#system-health">System Health</a></li>
           </ul>
           <div class="theme-switch-wrapper">
               <span class="icon"><i class="fas fa-sun"></i></span>
@@ -290,6 +291,42 @@
 }</pre>
                 </div>
             </div>
+
+            <div class="endpoint">
+                <h3>6. System Health Information</h3>
+                <p>Retrieve current system health metrics including CPU and memory usage.</p>
+                
+                <div class="endpoint-details">
+                    <div class="endpoint-item">
+                        <h4>Endpoint:</h4>
+                        <code>/systemhealth</code>
+                    </div>
+                    <div class="endpoint-item">
+                        <h4>Method:</h4>
+                        <code>GET</code>
+                    </div>
+                </div>
+
+                <h4>Parameters:</h4>
+                <p>None</p>
+
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> JSON with system health information</p>
+                <div class="code-block json">
+                    <pre>{
+  "cpu_usage_percent": 1.0,
+  "current_timestamp": 1741618728.4574647,
+  "previous_health_check_timestamp": 1741618551.2184849,
+  "ram_usage": {
+    "percent": 61.5,
+    "total_bytes": 1017094144,
+    "total_readable": "969.98 MB",
+    "used_bytes": 482713600,
+    "used_readable": "460.35 MB"
+  }
+}</pre>
+                </div>
+            </div>
         </section>
 
         <section id="examples" class="container">
@@ -421,6 +458,30 @@
                     <h4>Result:</h4>
                     <div class="image-container" id="cache-result">
                         <div class="placeholder">Result will appear here</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="system-health" class="example-section">
+                <h3>System Health Monitoring</h3>
+                <p>View current system resource usage to monitor API performance.</p>
+                
+                <div class="button-group">
+                    <button id="system-health-button" class="monitor-btn">Check System Health</button>
+                </div>
+                
+                <div class="result-container">
+                    <h4>API Request:</h4>
+                    <div class="code-block" id="health-code">
+                        <code>https://api.ansonlai.website/systemhealth</code>
+                        <button class="copy-btn" data-text="https://api.ansonlai.website/systemhealth">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <h4>Result:</h4>
+                    <div class="health-container" id="health-result">
+                        <div class="placeholder">System health information will appear here</div>
                     </div>
                 </div>
             </div>
