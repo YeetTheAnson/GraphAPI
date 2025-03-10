@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphAPI Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- Add this right after the opening <nav> tag in the header section -->
+      <nav>
+          <div class="logo">GraphAPI</div>
+          <ul class="nav-links">
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#endpoints">Endpoints</a></li>
+              <li><a href="#examples">Examples</a></li>
+              <li><a href="#latex-support">LaTeX Support</a></li>
+          </ul>
+          <div class="theme-switch-wrapper">
+              <span class="icon"><i class="fas fa-sun"></i></span>
+              <label class="theme-switch" for="theme-switch">
+                  <input type="checkbox" id="theme-switch" />
+                  <span class="slider"></span>
+              </label>
+              <span class="icon"><i class="fas fa-moon"></i></span>
+          </div>
+          <div class="hamburger-menu">
+              <i class="fas fa-bars"></i>
+          </div>
+      </nav>
+    </header>
+
+    <div class="hero">
+        <h1>GraphAPI</h1>
+        <p>Generate beautiful plots of mathematical equations with ease</p>
+    </div>
+
+    <main>
+        <section id="overview" class="container">
+            <h2>Overview</h2>
+            <p>This API provides services for plotting mathematical equations. It can generate plots from custom LaTeX equations, create random equations for different mathematical categories, and manage a cache of previously generated plots.</p>
+            
+            <div class="info-box">
+                <h3>Base URL</h3>
+                <div class="code-block">
+                    <code>https://api.ansonlai.website</code>
+                    <button class="copy-btn" data-text="https://api.ansonlai.website">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="endpoints" class="container">
+            <h2>Endpoints</h2>
+            
+            <div class="endpoint">
+                <h3>1. Plot Custom Equation</h3>
+                <p>Generate a plot from a user-provided LaTeX equation.</p>
+                
+                <div class="endpoint-details">
+                    <div class="endpoint-item">
+                        <h4>Endpoint:</h4>
+                        <code>/plot</code>
+                    </div>
+                    <div class="endpoint-item">
+                        <h4>Method:</h4>
+                        <code>GET</code>
+                    </div>
+                </div>
+
+                <h4>Parameters:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>equation</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>-</td>
+                            <td>LaTeX formatted mathematical equation</td>
+                        </tr>
+                        <tr>
+                            <td>x_scale</td>
+                            <td>int</td>
+                            <td>No</td>
+                            <td>20</td>
+                            <td>Width of the x-axis range (-x_scale/2 to x_scale/2)</td>
+                        </tr>
+                        <tr>
+                            <td>y_scale</td>
+                            <td>int</td>
+                            <td>No</td>
+                            <td>20</td>
+                            <td>Height of the y-axis range (-y_scale/2 to y_scale/2)</td>
+                        </tr>
+                        <tr>
+                            <td>data_points</td>
+                            <td>int</td>
+                            <td>No</td>
+                            <td>1000</td>
+                            <td>Number of data points for plotting. Higher values generate smoother curves but increase processing time.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> PNG image of the plotted equation</p>
+                <p><strong>Error:</strong> 400 status code with error message</p>
+            </div>
+
+            <div class="endpoint">
+                <h3>2. Generate Random Equation</h3>
+                <p>Generate and plot a random equation from a specified category.</p>
+                
+                <div class="endpoint-details">
+                    <div class="endpoint-item">
+                        <h4>Endpoint:</h4>
+                        <code>/random</code>
+                    </div>
+                    <div class="endpoint-item">
+                        <h4>Method:</h4>
+                        <code>GET</code>
+                    </div>
+                </div>
+
+                <h4>Parameters:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>-</td>
+                            <td>Mathematical category for the random equation</td>
+                        </tr>
+                        <tr>
+                            <td>x_scale</td>
+                            <td>int</td>
+                            <td>No</td>
+                            <td>20</td>
+                            <td>Width of the x-axis range</td>
+                        </tr>
+                        <tr>
+                            <td>y_scale</td>
+                            <td>int</td>
+                            <td>No</td>
+                            <td>20</td>
+                            <td>Height of the y-axis range</td>
+                        </tr>
+                        <tr>
+                            <td>data_points</td>
+                            <td>int</td>
+                            <td>No</td>
+                            <td>1000</td>
+                            <td>Number of data points for plotting. Higher values generate smoother curves but increase processing time.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Valid Categories:</h4>
+                <ul class="category-list">
+                    <li><code>sqrt</code> - Square root functions</li>
+                    <li><code>polynomial</code> - Polynomial functions</li>
+                    <li><code>linear</code> - Linear functions</li>
+                    <li><code>trigonometry</code> - Trigonometric functions</li>
+                    <li><code>exponential</code> - Exponential functions</li>
+                    <li><code>logarithm</code> - Logarithmic functions</li>
+                    <li><code>reciprocal</code> - Reciprocal functions</li>
+                </ul>
+
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> PNG image of the randomly generated and plotted equation</p>
+                <p><strong>Error:</strong> 400 status code with error message</p>
+            </div>
+
+            <div class="endpoint">
+                <h3>3. Get Random Cached Graph</h3>
+                <p>Retrieve a random graph from the cache of previously generated plots.</p>
+                
+                <div class="endpoint-details">
+                    <div class="endpoint-item">
+                        <h4>Endpoint:</h4>
+                        <code>/cached</code>
+                    </div>
+                    <div class="endpoint-item">
+                        <h4>Method:</h4>
+                        <code>GET</code>
+                    </div>
+                </div>
+
+                <h4>Parameters:</h4>
+                <p>None</p>
+
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> PNG image of a randomly selected cached graph</p>
+                <p><strong>Note:</strong> If the cache is empty, a placeholder image is returned.</p>
+            </div>
+
+            <div class="endpoint">
+                <h3>4. Clear Cache</h3>
+                <p>Clear all cached graphs.</p>
+                
+                <div class="endpoint-details">
+                    <div class="endpoint-item">
+                        <h4>Endpoint:</h4>
+                        <code>/cache</code>
+                    </div>
+                    <div class="endpoint-item">
+                        <h4>Method:</h4>
+                        <code>POST</code>
+                    </div>
+                </div>
+
+                <h4>Parameters:</h4>
+                <p>None</p>
+
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> JSON response with success message</p>
+                <div class="code-block json">
+                    <pre>{
+  "status": "success",
+  "message": "Cache cleared successfully"
+}</pre>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <h3>5. Get Cache Information</h3>
+                <p>Retrieve information about the current cache state.</p>
+                
+                <div class="endpoint-details">
+                    <div class="endpoint-item">
+                        <h4>Endpoint:</h4>
+                        <code>/cache/info</code>
+                    </div>
+                    <div class="endpoint-item">
+                        <h4>Method:</h4>
+                        <code>GET</code>
+                    </div>
+                </div>
+
+                <h4>Parameters:</h4>
+                <p>None</p>
+
+                <h4>Response:</h4>
+                <p><strong>Success:</strong> JSON with cache information</p>
+                <div class="code-block json">
+                    <pre>{
+  "cache_size": 3,
+  "max_cache_size": 50,
+  "graphs": [
+    {
+      "id": "12345678",
+      "equation": "x^2+5",
+      "category": "polynomial",
+      "timestamp": 1677891234.567
+    },
+    {
+      "id": "87654321",
+      "equation": "\\sin(x)",
+      "category": "trigonometry",
+      "timestamp": 1677891234.000
+    },
+    {
+      "id": "23456789",
+      "equation": "\\frac{1}{x}",
+      "category": "reciprocal",
+      "timestamp": 1677891230.000
+    }
+  ]
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="container">
+            <h2>Interactive Examples</h2>
+            
+            <div class="example-section">
+                <h3>Plot Custom Equation</h3>
+                <p>Enter a LaTeX formatted equation to see the plotted result.</p>
+                
+                <div class="input-group">
+                    <label for="custom-equation">LaTeX Equation:</label>
+                    <input type="text" id="custom-equation" placeholder="\sinh\left(\frac{x}{\pi\cdot x^{2\cdot\cosh\left(x\right)}}\right)" value="\sinh\left(\frac{x}{\pi\cdot x^{2\cdot\cosh\left(x\right)}}\right)">
+                </div>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="x-scale">X Scale:</label>
+                        <input type="number" id="x-scale" value="20" min="1" max="100">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="y-scale">Y Scale:</label>
+                        <input type="number" id="y-scale" value="20" min="1" max="100">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="data-points">Data Points:</label>
+                        <input type="number" id="data-points" value="1000" min="100" max="5000">
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <p><i class="fas fa-info-circle"></i> Higher data point values generate smoother curves but increase processing time.</p>
+                </div>
+                
+                <button id="plot-button" class="primary-btn">Generate Plot</button>
+                
+                <div class="result-container">
+                    <h4>API Request:</h4>
+                    <div class="code-block" id="plot-code">
+                        <code>https://api.ansonlai.website/plot?equation=x%5E2%20%2B%205*x%20%2B%206&x_scale=20&y_scale=20&data_points=1000</code>
+                        <button class="copy-btn" data-text="https://api.ansonlai.website/plot?equation=x%5E2%20%2B%205*x%20%2B%206&x_scale=20&y_scale=20&data_points=1000">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <h4>Result:</h4>
+                    <div class="image-container" id="plot-result">
+                        <div class="placeholder">Plot will appear here</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Random Equation Generator</h3>
+                <p>Select a category to generate a random equation plot.</p>
+                
+                <div class="input-group">
+                    <label for="random-category">Category:</label>
+                    <select id="random-category">
+                        <option value="polynomial">Polynomial</option>
+                        <option value="trigonometry">Trigonometry</option>
+                        <option value="exponential">Exponential</option>
+                        <option value="logarithm">Logarithm</option>
+                        <option value="reciprocal">Reciprocal</option>
+                        <option value="sqrt">Square Root</option>
+                        <option value="linear">Linear</option>
+                    </select>
+                </div>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="random-x-scale">X Scale:</label>
+                        <input type="number" id="random-x-scale" value="20" min="1" max="100">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="random-y-scale">Y Scale:</label>
+                        <input type="number" id="random-y-scale" value="20" min="1" max="100">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="random-data-points">Data Points:</label>
+                        <input type="number" id="random-data-points" value="1000" min="100" max="5000">
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <p><i class="fas fa-info-circle"></i> Higher data point values generate smoother curves but increase processing time.</p>
+                </div>
+                
+                <button id="random-button" class="primary-btn">Generate Random Plot</button>
+                
+                <div class="result-container">
+                    <h4>API Request:</h4>
+                    <div class="code-block" id="random-code">
+                        <code>https://api.ansonlai.website/random?category=polynomial&x_scale=20&y_scale=20</code>
+                        <button class="copy-btn" data-text="https://api.ansonlai.website/random?category=polynomial&x_scale=20&y_scale=20">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <h4>Result:</h4>
+                    <div class="image-container" id="random-result">
+                        <div class="placeholder">Plot will appear here</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Cache Operations</h3>
+                <p>View and manage the cache of previously generated plots.</p>
+                
+                <div class="button-group">
+                    <button id="view-cached-button" class="secondary-btn">View Random Cached Graph</button>
+                    <button id="cache-info-button" class="secondary-btn">View Cache Info</button>
+                    <button id="clear-cache-button" class="danger-btn">Clear Cache</button>
+                </div>
+                
+                <div class="result-container">
+                    <h4>API Request:</h4>
+                    <div class="code-block" id="cache-code">
+                        <code>https://api.ansonlai.website/cached</code>
+                        <button class="copy-btn" data-text="https://api.ansonlai.website/cached">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <h4>Result:</h4>
+                    <div class="image-container" id="cache-result">
+                        <div class="placeholder">Result will appear here</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="latex-support" class="container">
+            <h2>LaTeX Equation Support</h2>
+            <p>The API supports various LaTeX mathematical notations:</p>
+            
+            <table class="latex-table">
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>LaTeX Syntax</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic operations</td>
+                        <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code></td>
+                        <td>Addition, subtraction, multiplication, division, exponentiation</td>
+                    </tr>
+                    <tr>
+                        <td>Fractions</td>
+                        <td><code>\\frac{numerator}{denominator}</code></td>
+                        <td>Creates a fraction with the specified numerator and denominator</td>
+                    </tr>
+                    <tr>
+                        <td>Square roots</td>
+                        <td><code>\\sqrt{content}</code></td>
+                        <td>Calculates the square root of the content</td>
+                    </tr>
+                    <tr>
+                        <td>Trigonometric functions</td>
+                        <td><code>\\sin</code>, <code>\\cos</code>, <code>\\tan</code>, <code>\\arcsin</code>, <code>\\arccos</code>, <code>\\arctan</code></td>
+                        <td>Standard trigonometric functions</td>
+                    </tr>
+                    <tr>
+                        <td>Hyperbolic functions</td>
+                        <td><code>\\sinh</code>, <code>\\cosh</code>, <code>\\tanh</code></td>
+                        <td>Hyperbolic sine, cosine, and tangent</td>
+                    </tr>
+                    <tr>
+                        <td>Logarithmic and exponential</td>
+                        <td><code>\\exp</code>, <code>\\log</code>, <code>\\ln</code></td>
+                        <td>Exponential function, logarithm base 10, natural logarithm</td>
+                    </tr>
+                    <tr>
+                        <td>Constants</td>
+                        <td><code>\\pi</code></td>
+                        <td>Mathematical constant π</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="info-box warning">
+                <h3><i class="fas fa-exclamation-triangle"></i> Important Note on URL Encoding</h3>
+                <p>LaTeX equations must be properly URL-encoded to be used in API requests. Special characters like backslashes require double escaping (once for LaTeX and once for URL encoding).</p>
+                <p>Example: <code>\\frac{1}{x}</code> becomes <code>%5C%5Cfrac%7B1%7D%7Bx%7D</code> in the URL.</p>
+                <p>The examples on this page automatically handle the URL encoding for you.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GraphAPI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
