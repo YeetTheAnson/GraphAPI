@@ -40,7 +40,7 @@
     <main>
         <section id="overview" class="container">
             <h2>Overview</h2>
-            <p>This API provides services for plotting mathematical equations. It can generate plots from custom LaTeX equations, create random equations for different mathematical categories, and manage a cache of previously generated plots.</p>
+            <p>This API allows user to plot math equations encoded with LaTex. It can generate plots from custom LaTeX equations, create random equations for different categories/types of mathematical functions and manage cache of previously generated graphs.</p>
             
             <div class="info-box">
                 <h3>Base URL</h3>
@@ -58,7 +58,7 @@
             
             <div class="endpoint">
                 <h3>1. Plot Custom Equation</h3>
-                <p>Generate a plot from a user-provided LaTeX equation.</p>
+                <p>Generate a plot from a userprovided LaTeX equation.</p>
                 
                 <div class="endpoint-details">
                     <div class="endpoint-item">
@@ -442,37 +442,37 @@
                 <tbody>
                     <tr>
                         <td>Basic operations</td>
-                        <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code></td>
+                        <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^{}</code></td>
                         <td>Addition, subtraction, multiplication, division, exponentiation</td>
                     </tr>
                     <tr>
                         <td>Fractions</td>
-                        <td><code>\\frac{numerator}{denominator}</code></td>
+                        <td><code>\frac{numerator}{denominator}</code></td>
                         <td>Creates a fraction with the specified numerator and denominator</td>
                     </tr>
                     <tr>
                         <td>Square roots</td>
-                        <td><code>\\sqrt{content}</code></td>
+                        <td><code>\sqrt{content}</code></td>
                         <td>Calculates the square root of the content</td>
                     </tr>
                     <tr>
                         <td>Trigonometric functions</td>
-                        <td><code>\\sin</code>, <code>\\cos</code>, <code>\\tan</code>, <code>\\arcsin</code>, <code>\\arccos</code>, <code>\\arctan</code></td>
+                        <td><code>\sin</code>, <code>\cos</code>, <code>\tan</code>, <code>\arcsin</code>, <code>\arccos</code>, <code>\arctan</code></td>
                         <td>Standard trigonometric functions</td>
                     </tr>
                     <tr>
                         <td>Hyperbolic functions</td>
-                        <td><code>\\sinh</code>, <code>\\cosh</code>, <code>\\tanh</code></td>
+                        <td><code>\sinh</code>, <code>\cosh</code>, <code>\tanh</code></td>
                         <td>Hyperbolic sine, cosine, and tangent</td>
                     </tr>
                     <tr>
                         <td>Logarithmic and exponential</td>
-                        <td><code>\\exp</code>, <code>\\log</code>, <code>\\ln</code></td>
+                        <td><code>\exp</code>, <code>\log</code>, <code>\ln</code></td>
                         <td>Exponential function, logarithm base 10, natural logarithm</td>
                     </tr>
                     <tr>
                         <td>Constants</td>
-                        <td><code>\\pi</code></td>
+                        <td><code>\pi</code></td>
                         <td>Mathematical constant π</td>
                     </tr>
                 </tbody>
