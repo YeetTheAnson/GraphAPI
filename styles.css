@@ -85,7 +85,6 @@ body.dark-mode .placeholder {
     color: #aaa;
 }
 
-/* Theme toggle switch styling */
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
@@ -140,7 +139,6 @@ input:checked + .slider:before {
     font-size: 14px;
 }
 
-/* Mobile responsiveness for theme switch */
 @media (max-width: 768px) {
     .theme-switch-wrapper {
         margin-left: auto;
@@ -179,7 +177,6 @@ body {
     padding: 2rem;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     font-weight: 600;
@@ -221,7 +218,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Header and Navigation */
 header {
     background-color: var(--header-bg);
     color: var(--header-text);
@@ -265,7 +261,6 @@ nav {
     text-decoration: none;
 }
 
-/* Hero section */
 .hero {
     background: linear-gradient(to right, #3a7bd5, #00d2ff);
     color: white;
@@ -284,12 +279,10 @@ nav {
     margin: 0 auto;
 }
 
-/* Main content sections */
 section {
     margin-bottom: 3rem;
 }
 
-/* Info box */
 .info-box {
     background-color: var(--light-bg);
     border-radius: 8px;
@@ -321,7 +314,6 @@ section {
     color: var(--danger-color);
 }
 
-/* Code blocks */
 .code-block {
     background-color: var(--code-bg);
     border-radius: 6px;
@@ -330,7 +322,7 @@ section {
     position: relative;
     overflow-x: auto;
     border: 1px solid var(--border-color);
-    padding-right: 40px; /* Add space for copy button */
+    padding-right: 40px; 
 }
 
 .code-block code {
@@ -362,7 +354,6 @@ section {
     white-space: pre-wrap;
 }
 
-/* Endpoints */
 .endpoint {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
@@ -387,7 +378,6 @@ section {
     margin-bottom: 0.25rem;
 }
 
-/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -420,7 +410,6 @@ tr:nth-child(even) {
     margin-bottom: 0.5rem;
 }
 
-/* Interactive examples */
 .example-section {
     background-color: var(--light-bg);
     border-radius: 8px;
@@ -526,12 +515,10 @@ tr:nth-child(even) {
     font-style: italic;
 }
 
-/* LaTeX table */
 .latex-table {
     margin-bottom: 2rem;
 }
 
-/* Footer */
 footer {
     background-color: var(--header-bg);
     color: var(--header-text);
@@ -540,7 +527,6 @@ footer {
     margin-top: 4rem;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
