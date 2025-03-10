@@ -11,12 +11,16 @@ import time
 import re
 from collections import deque
 import threading
+import psutil
 
 
 app = Flask(__name__)
 
 graph_cache = deque(maxlen=50)
 cache_lock = threading.Lock()
+
+last_health_check = 0
+health_check_lock = threading.Lock()
 
 class CachedGraph:
     def __init__(self, equation, image_buffer, category=None, params=None):
@@ -387,6 +391,47 @@ def cache_info():
             ]
         }
     return jsonify(info)
+
+@app.route('/systemhealth', methods=['GET'])
+def system_health():
+    print("Accessing /systemhealth endpoint")
+    
+    cpu_percent = psutil.cpu_percent(interval=0.5)
+    
+    memory = psutil.virtual_memory()
+    ram_used_bytes = memory.used
+    ram_total_bytes = memory.total
+    ram_percent = memory.percent
+    
+    def bytes_to_human_readable(bytes_value):
+        for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+            if bytes_value < 1024.0 or unit == 'TB':
+                return f"{bytes_value:.2f} {unit}"
+            bytes_value /= 1024.0
+    
+    ram_used_readable = bytes_to_human_readable(ram_used_bytes)
+    ram_total_readable = bytes_to_human_readable(ram_total_bytes)
+    
+    global last_health_check
+    current_time = time.time()
+    with health_check_lock:
+        previous_check = last_health_check
+        last_health_check = current_time
+    
+    health_data = {
+        "cpu_usage_percent": cpu_percent,
+        "ram_usage": {
+            "used_bytes": ram_used_bytes,
+            "total_bytes": ram_total_bytes,
+            "used_readable": ram_used_readable,
+            "total_readable": ram_total_readable,
+            "percent": ram_percent
+        },
+        "current_timestamp": current_time,
+        "previous_health_check_timestamp": previous_check
+    }
+    
+    return jsonify(health_data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
