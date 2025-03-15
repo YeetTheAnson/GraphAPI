@@ -78,6 +78,7 @@ GET https://api.ansonlai.website/random?category=trigonometry&x_scale=30&y_scale
 
 ### 3. Generate Random Equation
 Retrieve a random graph from the cache of previously generated plots (of all users).
+Note: Images in cache are only saved for 5 hours from the time of generation
 
 **Endpoint:** `/cached`
 **Method:** `GET`
