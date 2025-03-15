@@ -150,27 +150,33 @@ GET https://api.ansonlai.website/cache/info
 ```
 {
   "cache_size": 3,
-  "max_cache_size": 50,
   "graphs": [
     {
-      "id": "12345678",
-      "equation": "x^2+5",
       "category": "polynomial",
-      "timestamp": 1677891234.567
+      "equation": "x^{2}+x^{2}+x^{1}+x^{4}",
+      "expires_at": 1742083607.9325397,
+      "expires_in": 4.97,
+      "id": "88040200",
+      "timestamp": 1742065607.9325397
     },
     {
-      "id": "87654321",
-      "equation": "\\sin(x)",
       "category": "trigonometry",
-      "timestamp": 1677891234.000
+      "equation": "\\frac{-3}{x}\\cdot\\sinh(-1\\cdot x)",
+      "expires_at": 1742083613.8341134,
+      "expires_in": 4.97,
+      "id": "37389279",
+      "timestamp": 1742065613.8341134
     },
     {
-      "id": "23456789",
-      "equation": "\\frac{1}{x}",
-      "category": "reciprocal",
-      "timestamp": 1677891230.000
+      "category": "logarithm",
+      "equation": "-0.2\\cdot\\ln(0.0\\cdot(x--2.3))+0.7",
+      "expires_at": 1742083621.838154,
+      "expires_in": 4.97,
+      "id": "09901580",
+      "timestamp": 1742065621.838154
     }
-  ]
+  ],
+  "max_cache_size": 50
 }
 ```
 
