@@ -29,7 +29,16 @@ class CachedGraph:
         self.category = category
         self.params = params
         self.timestamp = time.time()
+        self.expires_at = self.timestamp + (5 * 60 * 60)  # 5 hours in seconds
         self.id = str(hash(f"{equation}_{self.timestamp}"))[-8:]
+
+def clean_expired_graphs():
+    current_time = time.time()
+    with cache_lock:
+        expired = [graph for graph in list(graph_cache) if current_time > graph.expires_at]
+        for graph in expired:
+            graph_cache.remove(graph)
+        return len(expired)
 
 def parse_latex_to_python(latex_expr):
     original_expr = latex_expr
@@ -353,6 +362,11 @@ def random_equation():
 @app.route('/cached', methods=['GET'])
 def get_random_cached_graph():
     print("Accessing /cached endpoint")
+    
+    expired_count = clean_expired_graphs()
+    if expired_count > 0:
+        print(f"Removed {expired_count} expired graphs from cache")
+    
     with cache_lock:
         if not graph_cache:
             print("Cache is empty, returning placeholder image")
@@ -377,6 +391,11 @@ def clear_cache():
 @app.route('/cache/info', methods=['GET'])
 def cache_info():
     print("Accessing cache info")
+    
+    expired_count = clean_expired_graphs()
+    if expired_count > 0:
+        print(f"Removed {expired_count} expired graphs from cache")
+    
     with cache_lock:
         info = {
             "cache_size": len(graph_cache),
@@ -386,7 +405,9 @@ def cache_info():
                     "id": g.id,
                     "equation": g.equation,
                     "category": g.category,
-                    "timestamp": g.timestamp
+                    "timestamp": g.timestamp,
+                    "expires_at": g.expires_at,
+                    "expires_in": round((g.expires_at - time.time()) / 60 / 60, 2)
                 } for g in graph_cache
             ]
         }
