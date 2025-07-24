@@ -1,7 +1,8 @@
 import matplotlib
 matplotlib.use('Agg')
 
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, send_file, jsonify, send_from_directory
+from flask_cors import CORS  # Import CORS
 import matplotlib.pyplot as plt
 import numpy as np
 import urllib.parse
@@ -15,6 +16,7 @@ import psutil
 
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 graph_cache = deque(maxlen=50)
 cache_lock = threading.Lock()
@@ -285,6 +287,22 @@ def create_no_cache_image():
     buf.seek(0)
     plt.close('all')
     return buf
+
+# --- NEW: Routes to serve the frontend ---
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    if filename in ['styles.css', 'script.js']:
+        return send_from_directory('.', filename)
+    # Flask will automatically return 404 if the file is not found
+    # and no other route matches.
+    return "File not found", 404
+
+
+# --- API Endpoints ---
 
 @app.route('/plot', methods=['GET'])
 def plot_equation():
