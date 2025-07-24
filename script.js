@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // MODIFIED: baseUrl is now dynamic
+    const baseUrl = window.location.origin;
+
+    // MODIFIED: Update the base URL display in the documentation
+    const baseUrlDisplay = document.getElementById('base-url-display');
+    const baseUrlCopyBtn = document.getElementById('base-url-copy-btn');
+    if (baseUrlDisplay && baseUrlCopyBtn) {
+        baseUrlDisplay.textContent = baseUrl;
+        baseUrlCopyBtn.setAttribute('data-text', baseUrl);
+    }
+    
     const customEquationInput = document.getElementById('custom-equation');
     const xScaleInput = document.getElementById('x-scale');
     const yScaleInput = document.getElementById('y-scale');
@@ -25,13 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const healthCode = document.getElementById('health-code');
     const healthResult = document.getElementById('health-result');
 
-    const baseUrl = 'https://api.ansonlai.website';
-
     function encodeLatex(latex){
         return encodeURIComponent(latex);
     }
 
     function updateCopyButtons() {
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            // Remove existing listener to prevent duplicates
+            button.replaceWith(button.cloneNode(true));
+        });
         document.querySelectorAll('.copy-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const text = this.getAttribute('data-text');
@@ -54,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const yScale = yScaleInput.value;
         const dataPoints = dataPointsInput.value;
 
+        // Uses the dynamic baseUrl
         const apiUrl = `${baseUrl}/plot?equation=${encodeLatex(equation)}&x_scale=${xScale}&y_scale=${yScale}&data_points=${dataPoints}`;
 
         plotCode.querySelector('code').textContent = apiUrl;
@@ -82,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const xScale = randomXScaleInput.value;
         const yScale = randomYScaleInput.value;
         const dataPoints = randomDataPointsInput.value;
-
+        
+        // Uses the dynamic baseUrl
         const apiUrl = `${baseUrl}/random?category=${category}&x_scale=${xScale}&y_scale=${yScale}&data_points=${dataPoints}`;
 
         randomCode.querySelector('code').textContent = apiUrl;
@@ -107,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     viewCachedButton.addEventListener('click', function() {
+        // Uses the dynamic baseUrl
         const apiUrl = `${baseUrl}/cached`;
 
         cacheCode.querySelector('code').textContent = apiUrl;
@@ -132,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     cacheInfoButton.addEventListener('click', function() {
+        // Uses the dynamic baseUrl
         const apiUrl = `${baseUrl}/cache/info`;
 
         cacheCode.querySelector('code').textContent = apiUrl;
@@ -156,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     clearCacheButton.addEventListener('click', function() {
+        // Uses the dynamic baseUrl
         const apiUrl = `${baseUrl}/cache`;
 
         cacheCode.querySelector('code').textContent = apiUrl;
@@ -184,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     systemHealthButton.addEventListener('click', function() {
+        // Uses the dynamic baseUrl
         const apiUrl = `${baseUrl}/systemhealth`;
 
         healthCode.querySelector('code').textContent = apiUrl;
